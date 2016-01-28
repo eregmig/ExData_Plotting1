@@ -14,12 +14,15 @@ data <- data.frame(data, datetime = as.POSIXct(paste(data$Date, data$Time), form
 par(mfrow = c(2,2))
 
 # Draw plot 1,1
+plot(data$datetime,data$Global_active_power, ylab = "Global Active Power", xlab = "",
+     type = "l")
 
+# Draw plot 1,2
+plot(data$datetime,data$Voltage, ylab = "Voltage", xlab = "datetime", type = "l")
 
-# Draw An empty plot
+# Draw plot 2,1
 plot(data$datetime,data$Sub_metering_1, ylab = "Energy sub metering", xlab = "",
      type = "n")
-
 # Add to opened plot a line for data sub metering 1
 lines(data$datetime,data$Sub_metering_1,col="black")
 # Add to opened plot a line for data sub metering 2
@@ -29,14 +32,27 @@ lines(data$datetime,data$Sub_metering_3,col="blue")
 # Add the legend to the plot
 legend("topright",legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), 
        col = c("black","red","blue"), lty = 1)
+
+# Draw plot 2,2
+plot(data$datetime,data$Global_reactive_power, ylab = "Global_reactive_power", 
+     xlab = "datetime", type = "l")
 
 # Open a png graphics device
-png(filename="figure/plot3.png")
+png(filename="figure/plot4.png")
 
-# Draw An empty plot
+# Divide the plot area in a 2x2 matrix
+par(mfrow = c(2,2))
+
+# Draw plot 1,1
+plot(data$datetime,data$Global_active_power, ylab = "Global Active Power", xlab = "",
+     type = "l")
+
+# Draw plot 1,2
+plot(data$datetime,data$Voltage, ylab = "Voltage", xlab = "datetime", type = "l")
+
+# Draw plot 2,1
 plot(data$datetime,data$Sub_metering_1, ylab = "Energy sub metering", xlab = "",
      type = "n")
-
 # Add to opened plot a line for data sub metering 1
 lines(data$datetime,data$Sub_metering_1,col="black")
 # Add to opened plot a line for data sub metering 2
@@ -46,6 +62,10 @@ lines(data$datetime,data$Sub_metering_3,col="blue")
 # Add the legend to the plot
 legend("topright",legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), 
        col = c("black","red","blue"), lty = 1)
+
+# Draw plot 2,2
+plot(data$datetime,data$Global_reactive_power, ylab = "Global_reactive_power", 
+     xlab = "datetime", type = "l")
 
 # Close the graphics device
 dev.off()
